@@ -15,9 +15,26 @@ connectDB();
 
 // Middleware
 app.use(json());
-app.use(cors({
-    origin: "*"
-}));
+
+
+// ✅ More secure CORS
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://designbyafreen.vercel.app',
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow no-origin requests (e.g., Postman) or allowed domains
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+  })
+);
 
 // Routes
 app.use('/api/auth', authRoutes);
