@@ -20,7 +20,7 @@ app.use(json());
 // ✅ More secure CORS
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://designbyafreen.vercel.app',
+  'https://designs-by-afreen-frontend.vercel.app',
 ];
 
 app.use(
