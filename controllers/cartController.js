@@ -28,7 +28,7 @@ export const getCarts = async (req, res) => {
      const item = cart.items.find(item => item.productId.toString() === productId);
 
     if (item) {
-      return res.status(400).json({ message: "Item already exists in cart" });
+      return res.status(200).json({ message: "Item already exists in cart" });
     }
 
     cart.items.push({ productId, quantity, name , category, price, imageUrl });
