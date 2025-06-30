@@ -58,7 +58,13 @@ export const updateCart = async (req, res) => {
       return res.status(404).json({ message: "Item not found in cart" });
     }
 
-    item.quantity = quantity;
+    if(quantity === 0){
+      cart.items = cart.items.filter(item => item.productId.toString() !== productId);
+    }
+    else{
+      item.quantity = quantity;
+    }
+
     await cart.save();
 
     res.status(200).json(cart);
