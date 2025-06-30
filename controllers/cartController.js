@@ -41,8 +41,8 @@ export const getCarts = async (req, res) => {
 export const updateCart = async (req, res) => {
    const { productId, quantity, userId } = req.body;
 
-  if (!productId || !quantity || !userId) {
-    return res.status(400).json({ message: "Missing required fields (productId, quantity, userId)" });
+  if (!productId || !userId) {
+    return res.status(400).json({ message: "Missing required fields (productId, userId)" });
   }
 
   try{
