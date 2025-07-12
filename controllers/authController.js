@@ -41,13 +41,13 @@ export async function login(req, res) {
 
       const isMatch = password === user.password ? true : false;
     if (!isMatch) {
-      return res.status(401).json({ 
+      return res.status(201).json({ 
         message: "Invalid credentials",
         success: false
       });
     }
     if(user.isBlocked){
-      return res.status(401).json({ 
+      return res.status(201).json({ 
         message: "User is blocked",
         success: false
       });
