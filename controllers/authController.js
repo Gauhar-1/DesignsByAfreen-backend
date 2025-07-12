@@ -39,7 +39,7 @@ export async function login(req, res) {
       success: false
     });
 
-      const isMatch = await compare(password, user.password);
+      const isMatch = password === user.password ? true : false;
     if (!isMatch) {
       return res.status(401).json({ 
         message: "Invalid credentials",
