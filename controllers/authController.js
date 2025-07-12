@@ -38,8 +38,20 @@ export async function login(req, res) {
       message : "User not found",
       success: false
     });
-    const isMatch = compare(password, user.password);
-    if (!isMatch) throw Error('Invalid credentials');
+
+      const isMatch = await compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ 
+        message: "Invalid credentials",
+        success: false
+      });
+    }
+    if(user.isBlocked){
+      return res.status(401).json({ 
+        message: "User is blocked",
+        success: false
+      });
+    }
     const token = sign({ id: user._id,  role: user.role }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.json({ token ,
        userId : user._id,
